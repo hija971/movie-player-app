@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import "./newList.css";
 import storage from "../../firebase";
 import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
 import { ListContext } from "../../context/listContext/ListContext";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { createList } from "../../context/listContext/apiCalls";
 
 export default function NewList() {
   const [list, setList] = useState(null);
+  const navigate = useNavigate()
 
   const { dispatch } = useContext(ListContext);
   const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
@@ -27,18 +30,20 @@ export default function NewList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createList(list, dispatch);
+    navigate('/list')
   };
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Movie</h1>
+      <h1 className="addProductTitle">New List</h1>
       <form className="addProductForm">
         <div className="formLeft">
           <div className="addProductItem">
             <label>Title</label>
             <input
               type="text"
-              placeholder="John Wick"
+              placeholder="Popular movies"
               name="title"
               onChange={handleChange}
             />
@@ -47,7 +52,7 @@ export default function NewList() {
             <label>Genre</label>
             <input
               type="text"
-              placeholder="description"
+              placeholder="action"
               name="genre"
               onChange={handleChange}
             />
