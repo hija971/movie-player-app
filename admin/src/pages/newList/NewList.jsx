@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import "./newList.css";
-import storage from "../../firebase";
-import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
+import { getMovies } from "../../context/movieContext/apiCalls";
 import { ListContext } from "../../context/listContext/ListContext";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { createList } from "../../context/listContext/apiCalls";

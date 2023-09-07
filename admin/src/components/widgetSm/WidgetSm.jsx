@@ -11,7 +11,8 @@ export default function WidgetSm() {
       try {
         const res = axios.get("/users?new=true", {
           headers: {
-            token: "Bearer",
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU",
           },
         });
         setNewUsers(res.data);
@@ -28,7 +29,10 @@ export default function WidgetSm() {
         {newUsers.map((user) => (
           <li className="widgetSmListItem">
             <img
-              src={user.profilePic || "https://i.pinimg.com/originals/61/54/76/61547625e01d8daf941aae3ffb37f653.png"}
+              src={
+                user.profilePic ||
+                "https://i.pinimg.com/originals/61/54/76/61547625e01d8daf941aae3ffb37f653.png"
+              }
               alt=""
               className="widgetSmImg"
             />
