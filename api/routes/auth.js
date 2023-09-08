@@ -16,20 +16,24 @@ router.post('/register', async (req, res) => {
         const user = await newUser.save();
         res.status(201).json(user);
     } catch {
-        res.status(500).json(err);
+        res.status(500).json({ error: err.message });
     }
 });
 // LOGIN
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-        !user && res.status(401).json("Wrong password or username!");
+        if (!user) {
+            return res.status(401).json({ error: "Sai tên đăng nhập hoặc mật khẩu!" });
+        }
 
         const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
 
         const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-        originalPassword !== req.body.password && res.status(401).json("Wrong password or username!");
+        if (originalPassword !== req.body.password) {
+            return res.status(401).json({ error: "Sai tên đăng nhập hoặc mật khẩu!" });
+        }
 
         const accessToken = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY, { expiresIn: "5d" });
 
@@ -37,7 +41,7 @@ router.post('/login', async (req, res) => {
 
         res.status(200).json({ ...info, accessToken });
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ error: err.message });
     }
 });
 
