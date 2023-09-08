@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import "./newProduct.css";
+import "./newMovie.css";
 import storage from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import {MovieContext} from "../../context/movieContext/MovieContext"

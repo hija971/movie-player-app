@@ -9,7 +9,7 @@ const Login = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleLogin = (e) => {
-    e.prevenDefault();
+    e.preventDefault();
     login({ email, password }, dispatch);
   };
   return (
