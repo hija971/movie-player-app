@@ -8,7 +8,7 @@ export default function List() {
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">List</h1>
-        <Link to="/newList">
+        <Link to="/lists">
           <button className="productAddButton">Create</button>
         </Link>
       </div>
@@ -29,10 +29,6 @@ export default function List() {
             <div className="productInfoItem">
               <span className="productInfoKey">type:</span>
               <span className="productInfoValue">{list.type}</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">limit:</span>
-              <span className="productInfoValue">{list.limit}</span>
             </div>
           </div>
         </div>

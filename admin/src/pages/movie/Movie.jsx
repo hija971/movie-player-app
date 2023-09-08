@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import "./product.css";
+import "./movie.css";
 import { Publish } from "@material-ui/icons";
 
-export default function Product() {
+export default function Movie() {
   const location = useLocation();
   const movie = location.movie;
   return (

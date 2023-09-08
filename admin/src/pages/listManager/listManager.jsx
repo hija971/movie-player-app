@@ -10,7 +10,7 @@ export default function ListManager() {
   const { lists, dispatch } = useContext(ListContext);
 
   useEffect(() => {
-    getLists();
+    getLists(dispatch);
   }, [dispatch]);
 
   const handleDelete = (id) => {
@@ -30,7 +30,7 @@ export default function ListManager() {
         return (
           <>
             <Link
-              to={{ pathname: "/list/" + params.row._id, list: params.row }}
+              to={{ pathname: "/lists/" + params.row._id, list: params.row }}
             >
               <button className="productListEdit">Edit</button>
             </Link>
@@ -52,7 +52,7 @@ export default function ListManager() {
         columns={columns}
         pageSize={8}
         checkboxSelection
-        getRowId={(row) => row._id}
+        getRowId={(r) => r._id}
       />
     </div>
   );

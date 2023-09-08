@@ -9,7 +9,7 @@ export default function WidgetSm() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = axios.get("/users?new=true", {
+        const res = await axios.get("/users?new=true", {
           headers: {
             token:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU",
@@ -22,6 +22,7 @@ export default function WidgetSm() {
     };
     getNewUsers();
   }, []);
+
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>

@@ -30,7 +30,7 @@ export default function NewList() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createList(list, dispatch);
-    navigate('/list')
+    navigate('/lists')
   };
 
   return (
