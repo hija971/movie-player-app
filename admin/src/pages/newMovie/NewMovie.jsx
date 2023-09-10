@@ -4,7 +4,7 @@ import storage from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import {MovieContext} from "../../context/movieContext/MovieContext"
 
-export default function NewProduct() {
+export default function NewMovieuct() {
   const [movie, setMovie] = useState(null);
   const [img, setImg] = useState(null);
   const [imgTitle, setImgTitle] = useState(null);

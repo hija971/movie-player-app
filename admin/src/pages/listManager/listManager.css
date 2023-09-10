@@ -1,5 +1,6 @@
 .productList{
     flex: 4;
+    width: 50%;
 }
 
 .productListItem{
@@ -28,4 +29,14 @@
 .productListDelete{
     color: red;
     cursor: pointer;
+}
+
+.addListButton {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
 }

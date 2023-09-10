@@ -8,11 +8,11 @@ import { Navigate, BrowserRouter as Router, Routes, Route, } from "react-router-
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
-import ProductList from "./pages/movieList/MovieList";
-import Product from "./pages/movie/Movie";
-import NewProduct from "./pages/newMovie/NewMovie";
+import MovieList from "./pages/movieList/MovieList";
+import Movie from "./pages/movie/Movie";
+import NewMovie from "./pages/newMovie/NewMovie";
 import Login from "./pages/login/Login";
-import ListManager from "./pages/listManager/listManager";
+import ListManager from "./pages/listManager/ListManager";
 import List from "./pages/list/List";
 import NewList from "./pages/newList/NewList";
 
@@ -23,7 +23,6 @@ function App() {
       <Routes>
       <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
       </Routes>
-
       {user && (
         <>
           <Topbar />
@@ -34,16 +33,15 @@ function App() {
               <Route path="/users" element={<UserList />} />
               <Route path="/user/:userId" element={<User />} />
               <Route path="/newUser" element={<NewUser />} />
-              <Route path="/movies" element={<ProductList />} />
-              <Route path="/product/:productId" element={<Product />} />
-              <Route path="/newproduct" element={<NewProduct />} />
+              <Route path="/movies" element={<MovieList />} />
+              <Route path="/movie/:movieId" element={<Movie />} />
+              <Route path="/newMovie" element={<NewMovie />} />
               <Route path="/lists" element={<ListManager />} />
               <Route path="/lists/:listId" element={<List />} />
               <Route path="/newList" element={<NewList />} />
             </Routes>
           </div>
         </>
-        
       )}
       
     </Router>

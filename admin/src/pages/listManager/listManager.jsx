@@ -42,18 +42,29 @@ export default function ListManager() {
         );
       },
     },
+    {
+      field: "add-list-button",
+      headerName: (
+        <Link to={"/newList"}>
+          <button className="addListButton">+ Add a new list</button>
+        </Link>
+      ),
+      width: 250
+    },
   ];
 
   return (
-    <div className="productList">
-      <DataGrid
-        rows={lists}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-        getRowId={(r) => r._id}
-      />
-    </div>
+    <>
+      <div className="productList">
+        <DataGrid
+          rows={lists}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+          getRowId={(r) => r._id}
+        />
+      </div>
+    </>
   );
 }
