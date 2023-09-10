@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get("users/stats", {
+        const res = await axios.get("/users/stats", {
           headers: {
             token:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU",
@@ -42,7 +42,7 @@ export default function Home() {
         statsList.map((item) =>
           setUserStats((prev) => [
             ...prev,
-            { name: MONTHS[item.id - 1], "New User": item.total },
+            { name: MONTHS[item._id - 1], "New User": item.total },
           ])
         );
       } catch (error) {
