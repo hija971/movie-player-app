@@ -4,7 +4,12 @@ import "./App.css";
 import Home from "./pages/home/Home";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
-import { Navigate, BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import {
+  Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
@@ -21,7 +26,8 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        {!user && <Route path="/" element={<Navigate to="/login" />} />}
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
       </Routes>
       {user && (
         <>
@@ -43,7 +49,6 @@ function App() {
           </div>
         </>
       )}
-      
     </Router>
   );
 }

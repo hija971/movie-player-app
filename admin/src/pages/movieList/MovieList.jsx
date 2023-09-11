@@ -12,6 +12,7 @@ export default function MovieList() {
   useEffect(() => {
     getMovies(dispatch);
   }, [dispatch]);
+  console.log(movies)
 
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
@@ -65,7 +66,7 @@ export default function MovieList() {
         rows={movies}
         disableSelectionOnClick
         columns={columns}
-        pageSize={15}
+        pageSize={8}
         checkboxSelection
         getRowId={(r) => r._id}
       />

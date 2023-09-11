@@ -16,7 +16,7 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">MovieAdmin</span>
+          <span className="logo">Movie Admin</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
