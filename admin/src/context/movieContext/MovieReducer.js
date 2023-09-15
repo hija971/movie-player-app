@@ -20,7 +20,7 @@ const MovieReducer = (state, action) => {
       };
     case "CREATE_MOVIE_START":
       return {
-        ...state, 
+        ...state,
         isFetching: true,
         error: false,
       };

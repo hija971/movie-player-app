@@ -30,7 +30,7 @@ export default function ListManager() {
         return (
           <>
             <Link
-              to={{ pathname: "/lists/" + params.row._id, list: params.row }}
+              to={{ pathname: "/list/" + params.row._id, list: params.row }}
             >
               <button className="productListEdit">Edit</button>
             </Link>
@@ -49,7 +49,9 @@ export default function ListManager() {
           <button className="addListButton">+ Add a new list</button>
         </Link>
       ),
-      width: 250
+      width: 200,
+      sortable: false,
+      filterable: false,
     },
   ];
 

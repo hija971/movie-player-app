@@ -19,11 +19,11 @@ export default function MovieList() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
       field: "movie",
       headerName: "Movie",
-      width: 200,
+      width: 180,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -36,12 +36,12 @@ export default function MovieList() {
     { field: "genre", headerName: "Genre", width: 120 },
     { field: "year", headerName: "year", width: 120 },
     { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
+    { field: "isSeries", headerName: "isSeries", width: 130 },
 
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 120,
       renderCell: (params) => {
         return (
           <>
@@ -66,7 +66,7 @@ export default function MovieList() {
         rows={movies}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={15}
         checkboxSelection
         getRowId={(r) => r._id}
       />

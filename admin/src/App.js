@@ -43,7 +43,7 @@ function App() {
               <Route path="/movie/:movieId" element={<Movie />} />
               <Route path="/newMovie" element={<NewMovie />} />
               <Route path="/lists" element={<ListManager />} />
-              <Route path="/lists/:listId" element={<List />} />
+              <Route path="/list/:listId" element={<List />} />
               <Route path="/newList" element={<NewList />} />
             </Routes>
           </div>
