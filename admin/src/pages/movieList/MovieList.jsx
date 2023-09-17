@@ -12,7 +12,7 @@ export default function MovieList() {
   useEffect(() => {
     getMovies(dispatch);
   }, [dispatch]);
-  console.log(movies);
+  console.log(movies)
 
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
@@ -46,10 +46,7 @@ export default function MovieList() {
         return (
           <>
             <Link
-              to={{
-                pathname: "/movie/" + params.row._id,
-                state: { movie: params.row },
-              }}
+              to={{ pathname: "/movie/" + params.row._id, movie: params.row }}
             >
               <button className="productListEdit">Edit</button>
             </Link>
