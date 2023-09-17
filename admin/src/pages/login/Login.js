@@ -8,20 +8,10 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const { isFetching, dispatch } = useContext(AuthContext);
     const [error, setError] = useState("");
-    const [isAdminError, setIsAdminError] = useState(false);
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        try {
-            const response = await login({ email, password }, dispatch);
-            if (response.error) {
-                setError("Sai tên đăng nhập hoặc mật khẩu!");
-            } else if (!response.user.isAdmin) {
-                setIsAdminError(true);
-            }
-        } catch (error) {
-            setError("Bạn không có quyền truy cập vào trang này!");
-        }
+        login({ email, password }, dispatch);
     };
 
     return (

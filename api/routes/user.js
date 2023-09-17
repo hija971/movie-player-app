@@ -61,8 +61,18 @@ router.get('/', verify, async (req, res) => {
     const query = req.query.new;
     if (req.user.isAdmin) {
         try {
-            const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find();
-            res.status(200).json(users)
+            let users;
+            if (query) {
+                users = await User.find().sort({ _id: -1 }).limit(5);
+            } else {
+                users = await User.find();
+            }
+
+            if (users.length > 0) {
+                res.status(200).json(users);
+            } else {
+                res.status(404).json("No users found!");
+            }
         } catch (err) {
             res.status(500).json(err);
         }
@@ -75,25 +85,29 @@ router.get('/', verify, async (req, res) => {
 
 router.get('/stats', async (req, res) => {
     const today = new Date();
-    const latYear = today.setFullYear(today.setFullYear() - 1);
+    const lastYear = new Date(today);
+    lastYear.setFullYear(lastYear.getFullYear() - 1);
 
     try {
         const data = await User.aggregate([
             {
-                $project: {
-                    month: { $month: "$createdAt" },
+                $match: {
+                    createdAt: { $gte: lastYear }, // Lấy người dùng được tạo trong 1 năm qua
                 },
             },
             {
                 $group: {
-                    _id: "$month",
-                    total: { $sum: 1 },
+                    _id: { $month: "$createdAt" }, // Nhóm theo tháng
+                    total: { $sum: 1 }, // Đếm số lượng người dùng trong từng tháng
                 },
-            }
-        ])
+            },
+            {
+                $sort: { _id: 1 }, // Sắp xếp theo thứ tự tháng
+            },
+        ]);
         res.status(200).json(data);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ error: "Không thể lấy dữ liệu thống kê." });
     }
 });
 

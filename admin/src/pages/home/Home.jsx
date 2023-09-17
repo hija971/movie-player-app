@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import Chart from "../../components/chart/Chart";
 import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
-import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import axios from "axios"
@@ -26,12 +25,12 @@ export default function Home() {
   const [userStats, setUserStats] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const getStats = async () => {
       try {
         const res = await axios.get("/users/stats", {
           headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU"
+            token: `Bearer ${token}`, // Gắn token vào header
           },
         });
         const statsList = res.data.sort(function (a, b) {

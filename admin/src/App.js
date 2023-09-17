@@ -6,55 +6,55 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
-import ProductList from "./pages/productList/ProductList";
-import Product from "./pages/product/Product";
-import NewProduct from "./pages/newProduct/NewProduct";
+import MovieList from "./pages/movieList/movieList";
+import Movie from "./pages/movie/movie";
+import NewMovie from "./pages/newMovie/newMovie";
 import Login from "./pages/login/Login.js";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const { user } = useContext(AuthContext);
-  const [isAdminError, setIsAdminError] = useState(false);
-  return (
-    <Router>
-      <Switch>
-        <Route path="/login">
-          {user ? <Redirect to="/" /> : <Login />}
-        </Route>
-        {user &&
-          <>
-            <Topbar />
-            <div className="container">
-              <Sidebar />
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/users">
-                <UserList />
-              </Route>
-              <Route path="/user/:userId">
-                <User />
-              </Route>
-              <Route path="/newUser">
-                <NewUser />
-              </Route>
-              <Route path="/movies">
-                <ProductList />
-              </Route>
-              <Route path="/product/:productId">
-                <Product />
-              </Route>
-              <Route path="/newproduct">
-                <NewProduct />
-              </Route>
-            </div>
-          </>
-        }
-      </Switch>
-    </Router>
-  );
+
+return (
+  <Router>
+    <Switch>
+      <Route path="/login">
+        {user ? <Redirect to="/" /> : <Login />}
+      </Route>
+      {user &&
+        <>
+          <Topbar />
+          <div className="container">
+            <Sidebar />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/users">
+              <UserList />
+            </Route>
+            <Route path="/user/:userId">
+              <User />
+            </Route>
+            <Route path="/newUser">
+              <NewUser />
+            </Route>
+            <Route path="/movies">
+              <MovieList  />
+            </Route>
+            <Route path="/movie/:movieId">
+              <Movie />
+            </Route>
+            <Route path="/new-movie">
+              <NewMovie />
+            </Route>
+          </div>
+        </>
+      }
+    </Switch>
+  </Router>
+);
 }
 
 export default App;

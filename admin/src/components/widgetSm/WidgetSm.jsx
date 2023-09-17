@@ -3,6 +3,8 @@ import "./widgetSm.css";
 import { Visibility } from "@material-ui/icons";
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
 export default function WidgetSm() {
   const [newUsers, setNewUsers] = useState([]);
 
@@ -11,8 +13,7 @@ export default function WidgetSm() {
       try {
         const res = await axios.get("/users?new=true", {
           headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU"
+            token: `Bearer ${token}`
           },
         });
         setNewUsers(res.data);
@@ -35,7 +36,7 @@ export default function WidgetSm() {
               className="widgetSmImg"
             />
             <div className="widgetSmUser">
-              <span className="widgetSmUsername">{user.username}r</span>
+              <span className="widgetSmUsername">{user.username}</span>
             </div>
             <button className="widgetSmButton">
               <Visibility className="widgetSmIcon" />
