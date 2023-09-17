@@ -4,6 +4,7 @@ import { Visibility } from "@material-ui/icons";
 import { useState, useEffect } from "react";
 
 export default function WidgetSm() {
+  const token = localStorage.getItem("token");
   const [newUsers, setNewUsers] = useState([]);
 
   useEffect(() => {
@@ -11,10 +12,10 @@ export default function WidgetSm() {
       try {
         const res = await axios.get("/users?new=true", {
           headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Zjg0MzA1ZjEyNDE3YWIyZjY0NjZmYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mzk5NzY1OSwiZXhwIjoxNjk0NDI5NjU5fQ.B2d6J2pmIPJEYufQMSDRpwXUY--qPSxQlxQtHeubklU",
+            token: `Bearer ${token}`,
           },
         });
+
         setNewUsers(res.data);
       } catch (error) {
         console.log(error);

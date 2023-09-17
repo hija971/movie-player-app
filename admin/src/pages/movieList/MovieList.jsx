@@ -12,17 +12,18 @@ export default function MovieList() {
   useEffect(() => {
     getMovies(dispatch);
   }, [dispatch]);
+  console.log(movies)
 
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
       field: "movie",
       headerName: "Movie",
-      width: 200,
+      width: 180,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -35,12 +36,12 @@ export default function MovieList() {
     { field: "genre", headerName: "Genre", width: 120 },
     { field: "year", headerName: "year", width: 120 },
     { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
+    { field: "isSeries", headerName: "isSeries", width: 130 },
 
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 120,
       renderCell: (params) => {
         return (
           <>
