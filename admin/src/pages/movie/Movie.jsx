@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
-import { useLocation } from "@reach/router";
+import { Link, useLocation } from "react-router-dom";
 import "./movie.css";
 import { Publish } from "@material-ui/icons";
 
 export default function Movie() {
   const location = useLocation();
+  console.log(location)
   const movie = location.state?.movie;
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Movie</h1>
-        <Link to="/newproduct">
+        <Link to="/newMovie">
           <button className="productAddButton">Create</button>
         </Link>
       </div>

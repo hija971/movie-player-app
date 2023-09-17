@@ -1,7 +1,7 @@
 import "./listManager.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { ListContext } from "../../context/listContext/ListContext.js";
 import { deleteList, getLists } from "../../context/listContext/apiCalls.js";
@@ -17,6 +17,12 @@ export default function ListManager() {
     deleteList(id, dispatch);
   };
 
+  const navigate = useNavigate();
+
+  const handleEditClick = (list) => {
+    navigate("/list/" + list._id, { state: { list: list } });
+  };
+
   const columns = [
     { field: "_id", headerName: "ID", width: 250 },
     { field: "title", headerName: "title", width: 250 },
@@ -29,11 +35,7 @@ export default function ListManager() {
       renderCell: (params) => {
         return (
           <>
-            <Link
-              to={{ pathname: "/list/" + params.row._id, list: params.row }}
-            >
-              <button className="productListEdit">Edit</button>
-            </Link>
+            <button className="productListEdit" onClick={() => handleEditClick(params.row)}>Edit</button>
             <DeleteOutline
               className="productListDelete"
               onClick={() => handleDelete(params.row._id)}

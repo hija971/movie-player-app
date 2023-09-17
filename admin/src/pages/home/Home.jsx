@@ -28,12 +28,18 @@ export default function Home() {
   const [userStats, setUserStats] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     const getStats = async () => {
       try {
+        // const res = await axios.get("/users/stats", {
+        //   headers: {
+        //     token: `Bearer ${token}`, // Gắn token vào header
+        //   },
+        // });
+
         const res = await axios.get("/users/stats", {
           headers: {
-            token: `Bearer ${token}`, // Gắn token vào header
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
 

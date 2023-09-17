@@ -8,7 +8,10 @@ import {
   getMoviesSuccess,
   createMoviesFailure,
   createMoviesStart,
-  createMoviesSuccess
+  createMoviesSuccess,
+  updateMoviesStart,
+  updateMoviesSuccess,
+  updateMoviesFailure
 } from "./MovieActions";
 
 export const getMovies = async (dispatch) => {
@@ -35,11 +38,21 @@ export const createMovie = async (movie, dispatch) => {
       },
     });
     dispatch(createMoviesSuccess(res.data));
+    console.log("Created!")
   } catch (error) {
     dispatch(createMoviesFailure());
   }
 };
 
+//update
+export const updateMovie = async (movie, dispatch) => {
+  dispatch(updateMoviesStart())
+  try {
+    const res = await axios.put("")
+  } catch (error) {
+    
+  }
+}
 
 //delete
 export const deleteMovie = async (id, dispatch) => {

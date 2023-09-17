@@ -3,12 +3,12 @@ import "./list.css";
 
 export default function List() {
   const location = useLocation();
-  const list = location.list;
+  const list = location.state?.list;
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">List</h1>
-        <Link to="/lists">
+        <Link to="/newList">
           <button className="productAddButton">Create</button>
         </Link>
       </div>
