@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./pages/home/Home";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
-import { Navigate, BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import { Navigate, BrowserRouter as Router, Routes, Route, BrowserRouter, } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
@@ -12,16 +12,16 @@ import MovieList from "./pages/movieList/MovieList";
 import Movie from "./pages/movie/Movie";
 import NewMovie from "./pages/newMovie/NewMovie";
 import Login from "./pages/login/Login";
-import ListManager from "./pages/listManager/ListManager";
+import ListManager from "./pages/listManager/ListManager.jsx";
 import List from "./pages/list/List";
 import NewList from "./pages/newList/NewList";
 
-function App() {
+export default function App() {
   const { user } = useContext(AuthContext);
   return (
     <Router>
       <Routes>
-      <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
       </Routes>
       {user && (
         <>
@@ -43,9 +43,8 @@ function App() {
           </div>
         </>
       )}
-      
+
     </Router>
   );
 }
 
-export default App;

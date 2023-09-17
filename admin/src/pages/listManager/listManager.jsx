@@ -3,8 +3,8 @@ import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { ListContext } from "../../context/listContext/ListContext";
-import { deleteList, getLists } from "../../context/listContext/apiCalls";
+import { ListContext } from "../../context/listContext/ListContext.js";
+import { deleteList, getLists } from "../../context/listContext/apiCalls.js";
 
 export default function ListManager() {
   const { lists, dispatch } = useContext(ListContext);
