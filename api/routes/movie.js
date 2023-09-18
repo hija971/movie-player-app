@@ -102,6 +102,21 @@ router.get('/', verify, async (req, res) => {
         res.status(403).json("You are not allowed!");
     }
 });
+// GET ALL with a limit of 10
+router.get('/limit', verify, async (req, res) => {
+    if (req.user.isAdmin) {
+        const limit = 10;  // Set the limit to 10 items
+
+        try {
+            const movies = await Movie.find().limit(limit);  // Apply the limit
+            res.status(200).json(movies.reverse());
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    } else {
+        res.status(403).json("You are not allowed!");
+    }
+});
 
 
 export default router;
