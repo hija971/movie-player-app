@@ -24,12 +24,12 @@ router.post("/", verify, async (req, res) => {
 router.put("/:id", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {
-      const updateMovie = await Movie.findByIdAndUpdate(
+      const updatedMovie = await Movie.findByIdAndUpdate(
         req.params.id,
         req.body,
         { new: true }
       );
-      res.status(201).json(updateMovie);
+      res.status(201).json(updatedMovie);
     } catch (err) {
       res.status(500).json(err);
     }

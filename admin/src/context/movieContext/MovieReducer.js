@@ -1,5 +1,6 @@
 const MovieReducer = (state, action) => {
   switch (action.type) {
+    //GET
     case "GET_MOVIES_START":
       return {
         movies: [],
@@ -18,6 +19,8 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //CREATE
     case "CREATE_MOVIE_START":
       return {
         ...state,
@@ -36,6 +39,8 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //UPDATE
     case "UPDATE_MOVIE_START":
       return {
         ...state,
@@ -56,6 +61,8 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //DELETE
     case "DELETE_MOVIE_START":
       return {
         ...state,

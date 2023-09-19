@@ -70,7 +70,7 @@ export default function User() {
                 <select
                   className="userUpdateInput"
                   onChange={(e) =>
-                    setUpdatedUser({ ...updatedUser, isAdmin: e.target.value === "true" })
+                    setUpdatedUser({ ...updatedUser, isAdmin: e.target.value })
                   }
                 >
                   <option value="true">true</option>
@@ -81,12 +81,12 @@ export default function User() {
             <div className="userUpdateRight">
               <div className="userUpdateUpload">
                 <img className="userUpdateImg" src={user.profilePic} alt="" />
-                <label htmlFor="file">
+                <label htmlFor="img">
                   <Publish className="userUpdateIcon" />
                 </label>
                 <input
                   type="file"
-                  id="file"
+                  id="img"
                   style={{ display: "none" }}
                   onChange={(e) =>
                     setUpdatedUser({ ...updatedUser, profilePic: e.target.files[0] })

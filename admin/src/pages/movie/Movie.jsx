@@ -16,8 +16,8 @@ export default function Movie() {
     year: "",
     genre: "",
     limit: "",
-    trailer: "",
-    video: "",
+    trailer: null,
+    video: null,
     img: null
   });
   
@@ -93,29 +93,31 @@ export default function Movie() {
             <label>Trailer</label>
             <input
               type="file"
+              id="trailer"
               placeholder={movie.trailer}
               onChange={(e) =>
-                setUpdatedMovie({ ...updatedMovie, trailer: e.target.value })
+                setUpdatedMovie({ ...updatedMovie, trailer: e.target.files[0] })
               }
             />
             <label>Video</label>
             <input
               type="file"
+              id="video"
               placeholder={movie.video}
               onChange={(e) =>
-                setUpdatedMovie({ ...updatedMovie, video: e.target.value })
+                setUpdatedMovie({ ...updatedMovie, video: e.target.files[0] })
               }
             />
           </div>
           <div className="productFormRight">
             <div className="productUpload">
               <img src={movie.img} alt="" className="productUploadImg" />
-              <label for="file">
+              <label for="img">
                 <Publish />
               </label>
               <input
                 type="file"
-                id="file"
+                id="img"
                 style={{ display: "none" }}
                 onChange={(e) =>
                   setUpdatedMovie({ ...updatedMovie, img: e.target.files[0] })
