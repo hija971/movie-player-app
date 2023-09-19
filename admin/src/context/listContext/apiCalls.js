@@ -8,9 +8,13 @@ import {
   deleteListFailure,
   createListsStart,
   createListsSuccess,
-  createListsFailure
+  createListsFailure,
+  updateListsStart,
+  updateListsSuccess,
+  updateListsFailure,
 } from "./ListActions";
 
+//get
 export const getLists = async (dispatch) => {
   dispatch(getListsStart());
   try {
@@ -29,7 +33,7 @@ export const getLists = async (dispatch) => {
 export const createList = async (list, dispatch) => {
   dispatch(createListsStart());
   try {
-  const res = await axios.post("/lists", list, {
+    const res = await axios.post("/lists", list, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -40,12 +44,27 @@ export const createList = async (list, dispatch) => {
   }
 };
 
+//update
+export const updateList = async (id, updatedList, dispatch) => {
+  dispatch(updateListsStart());
+  try {
+    const res = await axios.put("/lists/" + id, updatedList, {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(updateListsSuccess(res.data));
+    console.log("Updated");
+  } catch (error) {
+    dispatch(updateListsFailure());
+  }
+};
 
 //delete
 export const deleteList = async (id, dispatch) => {
   dispatch(deleteListstart());
   try {
-    await axios.delete("/lists/"+id, {
+    await axios.delete("/lists/" + id, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

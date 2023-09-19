@@ -1,5 +1,6 @@
 const ListReducer = (state, action) => {
   switch (action.type) {
+    //GET
     case "GET_LISTS_START":
       return {
         lists: [],
@@ -18,6 +19,8 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //CREATE
     case "CREATE_LIST_START":
       return {
         ...state,
@@ -36,13 +39,15 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
-    case "UPLOAD_LIST_START":
+
+    //UPDATE
+    case "UPDATE_LIST_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "UPLOAD_LIST_SUCCESS":
+    case "UPDATE_LIST_SUCCESS":
       return {
         lists: state.lists.map(
           (list) => list._id === action.payload._id && action.payload
@@ -50,12 +55,14 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: false,
       };
-    case "UPLOAD_LIST_FAILURE":
+    case "UPDATE_LIST_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
+
+    //DELETE
     case "DELETE_LIST_START":
       return {
         ...state,

@@ -1,11 +1,26 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./movie.css";
 import { Publish } from "@material-ui/icons";
+import { useContext, useState } from "react";
+import { updateMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 
 export default function Movie() {
   const location = useLocation();
-  console.log(location)
   const movie = location.state?.movie;
+  const navigate = useNavigate();
+  const { dispatch } = useContext(MovieContext);
+
+  const [updatedMovie, setUpdatedMovie] = useState({
+    title: "",
+    year: "",
+    genre: "",
+    limit: "",
+    trailer: "",
+    video: "",
+    img: null
+  });
+  
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -44,31 +59,78 @@ export default function Movie() {
         <form className="productForm">
           <div className="productFormLeft">
             <label>Movie Title</label>
-            <input type="text" placeholder={movie.title} />
+            <input
+              type="text"
+              placeholder={movie.title}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, title: e.target.value })
+              }
+            />
             <label>Year</label>
-            <input type="text" placeholder={movie.year} />
+            <input
+              type="text"
+              placeholder={movie.year}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, year: e.target.value })
+              }
+            />
             <label>Genre</label>
-            <input type="text" placeholder={movie.genre} />
+            <input
+              type="text"
+              placeholder={movie.genre}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, genre: e.target.value })
+              }
+            />
             <label>Limit</label>
-            <input type="text" placeholder={movie.limit} />
+            <input
+              type="text"
+              placeholder={movie.limit}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, limit: e.target.value })
+              }
+            />
             <label>Trailer</label>
-            <input type="file" placeholder={movie.trailer} />
+            <input
+              type="file"
+              placeholder={movie.trailer}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, trailer: e.target.value })
+              }
+            />
             <label>Video</label>
-            <input type="file" placeholder={movie.video} />
+            <input
+              type="file"
+              placeholder={movie.video}
+              onChange={(e) =>
+                setUpdatedMovie({ ...updatedMovie, video: e.target.value })
+              }
+            />
           </div>
           <div className="productFormRight">
             <div className="productUpload">
-              <img
-                src={movie.img}
-                alt=""
-                className="productUploadImg"
-              />
+              <img src={movie.img} alt="" className="productUploadImg" />
               <label for="file">
                 <Publish />
               </label>
-              <input type="file" id="file" style={{ display: "none" }} />
+              <input
+                type="file"
+                id="file"
+                style={{ display: "none" }}
+                onChange={(e) =>
+                  setUpdatedMovie({ ...updatedMovie, img: e.target.files[0] })
+                }
+              />
             </div>
-            <button className="productButton">Update</button>
+            <button
+              className="productButton"
+              onClick={() => {
+                updateMovie(movie._id, updatedMovie, dispatch);
+                navigate("/movies");
+              }}
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

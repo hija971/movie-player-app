@@ -1,9 +1,21 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./list.css";
+import { useContext, useState } from "react";
+import { updateList } from "../../context/listContext/apiCalls";
+import { ListContext } from "../../context/listContext/ListContext";
 
 export default function List() {
   const location = useLocation();
   const list = location.state?.list;
+  const navigate = useNavigate();
+  const { dispatch } = useContext(ListContext);
+
+  const [updatedList, setUpdatedList] = useState({
+    title: "",
+    type: "",
+    genre: "",
+  });
+  
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -37,14 +49,41 @@ export default function List() {
         <form className="productForm">
           <div className="productFormLeft">
             <label>List Title</label>
-            <input type="text" placeholder={list.title} />
+            <input
+              type="text"
+              placeholder={list.title}
+              onChange={(e) =>
+                setUpdatedList({ ...updatedList, title: e.target.value })
+              }
+            />
             <label>Type</label>
-            <input type="text" placeholder={list.type} />
+            <input
+              type="text"
+              placeholder={list.type}
+              onChange={(e) =>
+                setUpdatedList({ ...updatedList, type: e.target.value })
+              }
+            />
             <label>Genre</label>
-            <input type="text" placeholder={list.genre} />
+            <input
+              type="text"
+              placeholder={list.genre}
+              onChange={(e) =>
+                setUpdatedList({ ...updatedList, genre: e.target.value })
+              }
+            />
           </div>
           <div className="productFormRight">
-            <button className="productButton">Update</button>
+            <button
+              type="submit"
+              className="productButton"
+              onClick={() => {
+                updateList(list._id, updatedList, dispatch);
+                navigate("/lists");
+              }}
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>
