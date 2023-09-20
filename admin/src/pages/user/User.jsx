@@ -70,6 +70,7 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
+                  id="username"
                   placeholder={user.username}
                   className="userUpdateInput"
                   onChange={(e) =>
@@ -81,6 +82,7 @@ export default function User() {
                 <label>Email</label>
                 <input
                   type="text"
+                  id="email"
                   placeholder={user.email}
                   className="userUpdateInput"
                   onChange={(e) =>
@@ -92,6 +94,7 @@ export default function User() {
                 <label>Password</label>
                 <input
                   type="text"
+                  id="password"
                   placeholder={user.password}
                   className="userUpdateInput"
                   onChange={(e) =>
@@ -103,6 +106,7 @@ export default function User() {
                 <label>Is Admin</label>
                 <select
                   className="userUpdateInput"
+                  id="isAdmin"
                   onChange={(e) =>
                     setUpdatedUser({ ...updatedUser, isAdmin: e.target.value })
                   }

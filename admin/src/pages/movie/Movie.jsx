@@ -93,6 +93,7 @@ export default function Movie() {
             <label>Movie Title</label>
             <input
               type="text"
+              id="title"
               placeholder={movie.title}
               onChange={(e) =>
                 setUpdatedMovie({ ...updatedMovie, title: e.target.value })
@@ -101,6 +102,7 @@ export default function Movie() {
             <label>Year</label>
             <input
               type="text"
+              id="year"
               placeholder={movie.year}
               onChange={(e) =>
                 setUpdatedMovie({ ...updatedMovie, year: e.target.value })
@@ -109,6 +111,7 @@ export default function Movie() {
             <label>Genre</label>
             <input
               type="text"
+              id="genre"
               placeholder={movie.genre}
               onChange={(e) =>
                 setUpdatedMovie({ ...updatedMovie, genre: e.target.value })
@@ -117,6 +120,7 @@ export default function Movie() {
             <label>Limit</label>
             <input
               type="text"
+              id="limit"
               placeholder={movie.limit}
               onChange={(e) =>
                 setUpdatedMovie({ ...updatedMovie, limit: e.target.value })
