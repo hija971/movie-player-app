@@ -1,5 +1,6 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./movie.css";
+import { storage, ref, uploadBytesResumable, getDownloadURL } from "../../firebase";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Publish } from "@material-ui/icons";
 import { useContext, useState } from "react";
 import { updateMovie } from "../../context/movieContext/apiCalls";
@@ -16,11 +17,42 @@ export default function Movie() {
     year: "",
     genre: "",
     limit: "",
-    trailer: null,
-    video: null,
-    img: null
   });
-  
+
+  const upload = (file, label) => {
+    const fileName = new Date().getTime() + label + file.name;
+    const storageRef = ref(storage, `/items/${fileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Uploaded ${progress}% done`);
+      },
+      (error) => {
+        console.log(error);
+      },
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setUpdatedMovie((prev) => {
+            return { ...prev, [label]: downloadURL };
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  };
+
+  const handleUpload = (e, label) => {
+    e.preventDefault();
+    if (e.target.files[0]) {
+      upload(e.target.files[0], label);
+    }
+  };
+ 
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -95,18 +127,14 @@ export default function Movie() {
               type="file"
               id="trailer"
               placeholder={movie.trailer}
-              onChange={(e) =>
-                setUpdatedMovie({ ...updatedMovie, trailer: e.target.files[0] })
-              }
+              onChange={(e) => handleUpload(e, "trailer")}
             />
             <label>Video</label>
             <input
               type="file"
               id="video"
               placeholder={movie.video}
-              onChange={(e) =>
-                setUpdatedMovie({ ...updatedMovie, video: e.target.files[0] })
-              }
+              onChange={(e) => handleUpload(e, "video")}
             />
           </div>
           <div className="productFormRight">
@@ -119,9 +147,7 @@ export default function Movie() {
                 type="file"
                 id="img"
                 style={{ display: "none" }}
-                onChange={(e) =>
-                  setUpdatedMovie({ ...updatedMovie, img: e.target.files[0] })
-                }
+                onChange={(e) => handleUpload(e, "img")}
               />
             </div>
             <button
